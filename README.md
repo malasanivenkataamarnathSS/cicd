@@ -65,3 +65,52 @@ cd sonarqube-9.4.0.54424/bin/linux-x86-64/
 Hurray !! Now you can access the `SonarQube Server` on `http://<ip-address>:9000` 
 
 
+----------------------------------------------------------------------------------
+    1 apt update
+    2  apt install git maven -y
+    3  sudo apt update
+    4  sudo apt install openjdk-11-jre
+    5  wget https://get.jenkins.io/war-stable/2.401.3/jenkins.war
+    6  java -jar jenkins.war --httpPort=80
+# after open jenkins in crome
+    Docker:--
+    1 apt install docker.io
+    2 sudo su -
+    3 usermod -aG docker jenkins
+    4 usermod -aG docker ubuntu
+    5 systemctl restart docker
+
+after we need to install pulgin in jenkins server 
+   -- docker pipeline (pulgin)
+----------------------------------------------------------------------
+    SonarQube:--
+    apt install unzip
+1 adduser sonarqube
+2 wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.4.0.54424.zip
+3 unzip *
+4 chmod -R 755 /home/sonarqube/sonarqube-9.4.0.54424
+5 chown -R sonarqube:sonarqube /home/sonarqube/sonarqube-9.4.0.54424
+6 cd sonarqube-9.4.0.54424/bin/linux-x86-64/
+7 ./sonar.sh start
+
+ Now you can access the SonarQube Server on http://<ip-address>:9000
+
+username -- admin
+password -- admin
+
+geneate access key 
+
+for that first go to -- my account
+                     -- click on security 
+                     -- generate token
+now we need to install sonar scanner pulign in jenkins.
+after manage credentials -->system-->Global credentials-->kind(Secret text) --> Secret (past sonarqube access key) 
+-->id (sonarqube)
+
+same like we  need to add dockerhub username and password
+--
+userwithpassword
+id --docker-cred 
+
+
+
